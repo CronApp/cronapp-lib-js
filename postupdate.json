@@ -37,6 +37,11 @@
       "file": "index.html",
       "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/js/cultures/kendo.culture.pt-BR.min.js",
       "type": "script"
+    },
+    {
+      "file": "index.html",
+      "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/js/jszip.min.js",
+      "type": "script"
     }
   ],
   "removes": [
