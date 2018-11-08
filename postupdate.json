@@ -18,18 +18,6 @@
     },
     {
       "file": "index.html",
-      "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/styles/kendo.cerulean.css?v=2.0.0",
-      "type": "style",
-      "onTop": true
-    },
-    {
-      "file": "index.html",
-      "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/styles/kendo.cerulean.mobile.min.css?v=2.0.0",
-      "type": "style",
-      "onTop": true
-    },
-    {
-      "file": "index.html",
       "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/js/kendo.all.fixed.js",
       "type": "script"
     },
@@ -46,6 +34,18 @@
   ],
   "removes": [
     {
+      "file": "index.html",
+      "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/styles/kendo.cerulean.css?v=2.0.0",
+      "type": "style",
+      "onTop": true
+    },
+    {
+      "file": "index.html",
+      "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/styles/kendo.cerulean.mobile.min.css?v=2.0.0",
+      "type": "style",
+      "onTop": true
+    },
+	{
       "file": "index.html",
       "script": "plugins/cronapp-framework-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js",
       "type": "script"
