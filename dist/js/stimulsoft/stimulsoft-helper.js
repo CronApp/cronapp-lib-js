@@ -44,20 +44,33 @@ StimulsoftHelper.prototype.parseToGroupedParam = function(datasourcesParam) {
   datasourcesParam.forEach(function(dsp) {
     var fieldParams = dsp.fieldParams.toArray();
     fieldParams.forEach(function(fp) {
-      for (var type in this._groupedType) {
-        if (this._groupedType[type].types.contains(fp.type.toLowerCase())) {
-          parameters.push({
-            name: fp.param,
-            originalName: fp.param,
-            type: type,
-            value: fp.value || ''
-          });
-          break;
+      if (fp.value == '') {
+        for (var type in this._groupedType) {
+          if (this._groupedType[type].types.contains(fp.type.toLowerCase())) {
+            parameters.push({
+              name: fp.param,
+              originalName: fp.param,
+              type: type,
+              value: fp.value
+            });
+            break;
+          }
         }
       }
     }.bind(this));
   }.bind(this));
-  return parameters;
+  var grouped = [];
+  parameters.forEach(function(p) {
+    var exist = false;
+    grouped.forEach(function(g) {
+      if (g.name == p.name)
+        exist = true;
+    });
+    if (!exist)
+      grouped.push(p);
+  });
+
+  return grouped;
 };
 
 StimulsoftHelper.prototype.getLocalizationInfo = function (cultureName, xml) {
