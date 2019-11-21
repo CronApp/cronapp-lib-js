@@ -309,37 +309,41 @@ StimulsoftHelper.prototype.parseParamValue = function (value) {
 StimulsoftHelper.prototype.setParamsInFilter = function(dataSources, datasourcesParam) {
   datasourcesParam.forEach(function(datasourceP) {
     var datasource = this.findDatasourceByName(dataSources, datasourceP.name);
-    datasource.originalSqlCommand = datasource.sqlCommand;
 
-    //Convert o linkParameters para o sqlCommand
-    var linkParameters = this.manageLinkParameters('get', datasource);
-    var linkParametersJson = {};
-    if (linkParameters.length)
-      linkParametersJson = JSON.parse(linkParameters);
+    if (!datasource.alreadySetParams) {
+        datasource.originalSqlCommand = datasource.sqlCommand;
 
-    linkParametersJson = this.mergeQueryParams(linkParametersJson, datasourceP.queryParams);
-    var odata = this.buildQueryString(linkParametersJson, 'odata');
-    var param = this.buildQueryString(linkParametersJson, 'param');
+        //Convert o linkParameters para o sqlCommand
+        var linkParameters = this.manageLinkParameters('get', datasource);
+        var linkParametersJson = {};
+        if (linkParameters.length)
+            linkParametersJson = JSON.parse(linkParameters);
 
-    datasourceP.fieldParams.forEach(function(fp) {
-      var paramValueOData = this.adjustParam.bind(this)(fp, 'odata');
-      var paramValueQS = this.adjustParam.bind(this)(fp, 'param');
-      var regex = eval('/' + ':' + fp.param + '\\b/gim');
+        linkParametersJson = this.mergeQueryParams(linkParametersJson, datasourceP.queryParams);
+        var odata = this.buildQueryString(linkParametersJson, 'odata');
+        var param = this.buildQueryString(linkParametersJson, 'param');
 
-      odata = odata.replaceAll(regex, paramValueOData);
-      param = param.replaceAll(regex, paramValueQS);
-    }.bind(this));
+        datasourceP.fieldParams.forEach(function (fp) {
+            var paramValueOData = this.adjustParam.bind(this)(fp, 'odata');
+            var paramValueQS = this.adjustParam.bind(this)(fp, 'param');
+            var regex = eval('/' + ':' + fp.param + '\\b/gim');
 
-    var queryString = param;
-    if (odata.length > 0) {
-      odata = '$filter=' + odata;
-      if (queryString.length > 0)
-        queryString += '&' + odata;
-      else
-        queryString = odata;
+            odata = odata.replaceAll(regex, paramValueOData);
+            param = param.replaceAll(regex, paramValueQS);
+        }.bind(this));
+
+        var queryString = param;
+        if (odata.length > 0) {
+            odata = '$filter=' + odata;
+            if (queryString.length > 0)
+                queryString += '&' + odata;
+            else
+                queryString = odata;
+        }
+
+        this.manageLinkParameters('set', datasource, queryString);
+        datasource.alreadySetParams = true;
     }
-
-    this.manageLinkParameters('set', datasource, queryString);
 
   }.bind(this));
 };
@@ -369,6 +373,7 @@ StimulsoftHelper.prototype.restoreOriginalFilter = function(dataSources, datasou
     var datasource = this.findDatasourceByName(dataSources, datasourceP.name);
     if (datasource.originalSqlCommand)
       datasource.sqlCommand = datasource.originalSqlCommand;
+    datasource.alreadySetParams = false;
   });
 };
 
