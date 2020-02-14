@@ -496,6 +496,22 @@ StimulsoftHelper.prototype.overrideMethods = function() {
     }
   };
 
+  Stimulsoft.Report.Chart.StiDoughnutSeriesCoreXF.prototype.getArgumentText = function(t, r) {
+    if (t.arguments.length > r && t.arguments[r])
+      return t.arguments[r].toString().replaceAll(".", Stimulsoft.System.Globalization.CultureInfo.currentCulture.numberFormat.numberDecimalSeparator);
+    return String.empty
+  };
+
+  Stimulsoft.Report.Chart.StiChartHelper.fillSeriesData= function(e, r) {
+    e.values = Array.create(Number, r.count),
+    e.arguments = Array.create(Object, r.count);
+    for (var i = 0; i < r.count; i++) {
+      var n = r[i];
+      n.value = e.values[i] = n.key !== "" && n.key ? n.key.toNumber() : 0,
+      e.arguments[i] = n.argument
+    }
+  };
+
 };
 
 var stimulsoftHelper = new StimulsoftHelper();
