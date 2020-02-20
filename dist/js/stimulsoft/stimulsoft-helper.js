@@ -430,44 +430,7 @@ StimulsoftHelper.prototype.getDatasourcesInBand = function(report) {
 StimulsoftHelper.prototype.overrideMethods = function() {
 
   //Os js são carregados assincronamente, faz o override apenas quando todos os js do stimulsoft estiverem carregados.
-  Stimulsoft.Base.StiODataHelper.prototype.getDefaultWebClient = function () {
-    var client = {};
-    if (!String.isNullOrWhiteSpace(this.addressBearer)) {
-      if (String.isNullOrWhiteSpace(this.bearerAccessToken)) {
-        this.bearerAccessToken = Stimulsoft.Base.StiODataHelper.getBearerAccessToken(this.addressBearer, this.userName, this.password);
-      }
-    }
-    client.downloadString = function (address, userName, password, bearerAccessToken) {
-      try {
-        var request = new XMLHttpRequest();
-
-        if (!String.isNullOrWhiteSpace(userName) && String.isNullOrWhiteSpace(bearerAccessToken)) {
-          request.withCredentials = true;
-          request.open("Get", address, false, userName, password);
-        }
-        else {
-          if (!String.isNullOrWhiteSpace(bearerAccessToken)) {
-            request.setRequestHeader("Authorization", "Bearer " + bearerAccessToken);
-          }
-          request.open("Get", address, false);
-        }
-
-        if (window.uToken) {
-          request.setRequestHeader("X-AUTH-TOKEN", window.uToken);
-        }
-        request.send();
-        if (request.status == 200) {
-          return request.responseText;
-        }
-      }
-      catch (e) {
-        throw e;
-      }
-    };
-    return client;
-  };
-
-  Stimulsoft.System.DateTime.fromString = function(d, logError) {
+    Stimulsoft.System.DateTime.fromString = function(d, logError) {
     if (typeof d === 'undefined') { 
       d = "2015-12-31"; 
     }
@@ -493,22 +456,6 @@ StimulsoftHelper.prototype.overrideMethods = function() {
           Stimulsoft.System.StiError.showError("Parse DateTime Error (" + d + ")", false);
       }
       return null;
-    }
-  };
-
-  Stimulsoft.Report.Chart.StiDoughnutSeriesCoreXF.prototype.getArgumentText = function(t, r) {
-    if (t.arguments.length > r && t.arguments[r])
-      return t.arguments[r].toString().replaceAll(".", Stimulsoft.System.Globalization.CultureInfo.currentCulture.numberFormat.numberDecimalSeparator);
-    return String.empty
-  };
-
-  Stimulsoft.Report.Chart.StiChartHelper.fillSeriesData= function(e, r) {
-    e.values = Array.create(Number, r.count),
-    e.arguments = Array.create(Object, r.count);
-    for (var i = 0; i < r.count; i++) {
-      var n = r[i];
-      n.value = e.values[i] = n.key !== "" && n.key ? n.key.toNumber() : 0,
-      e.arguments[i] = n.argument
     }
   };
 
