@@ -461,6 +461,9 @@ StimulsoftHelper.prototype.overrideMethods = function() {
     if (typeof d === 'undefined') { 
       d = "2015-12-31"; 
     }
+    if (d.length < 5 || (!d.match(TIME_PATTERN) && d.indexOf('-')) == -1)  {
+      return d;
+    }
     if (typeof logError === 'undefined') { 
       logError = true; 
     }
