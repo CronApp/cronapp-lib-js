@@ -1,6 +1,6 @@
 {
   "name": "cronapp-lib-js",
-  "version": "2.6.5",
+  "version": "2.6.6",
   "description": "Javascript library for CronApp's projects",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
     "url": "git+https://github.com/technecloud/cronapp-lib-js.git"
   },
   "author": "Cronapp",
-  "keywords": ["cronapp"],
+  "keywords": [
+    "cronapp"
+  ],
   "license": "ISC",
   "dependencies": {
     "terser": "^4.8.0"
