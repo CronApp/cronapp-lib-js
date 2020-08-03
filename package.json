@@ -12,7 +12,9 @@
     "url": "git+https://github.com/technecloud/cronapp-lib-js.git"
   },
   "author": "Cronapp",
-  "keywords": ["cronapp"],
+  "keywords": [
+    "cronapp"
+  ],
   "license": "ISC",
   "dependencies": {
     "terser": "^4.8.0"
