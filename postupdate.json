@@ -137,6 +137,11 @@
       "file": "index.html",
       "script": "plugins/cronapp-lib-js/dist/js/kendo-ui/js/kendo.all.fixed.js",
       "type": "script"
+    },
+    {
+      "file": "index.html",
+      "script": "plugins/cronapp-lib-js/dist/js/tinymce/node_modules/tinymce/tinymce.min.js",
+      "type": "script"
     }
   ],
   "replaces":[
@@ -145,7 +150,7 @@
       "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js"
     },
     {
-      "old": "plugins/cronapp-lib-js/dist/js/tinymce/node_modules/tinymce/tinymce.min.js",
+      "old": "plugins/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js",
       "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js"
     },
     {
