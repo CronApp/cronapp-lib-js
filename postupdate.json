@@ -1,5 +1,10 @@
 {
   "includes": [
+    {
+      "file": "index.html",
+      "script": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js",
+      "type": "script"
+    }
   ],
   "removes": [
     {
@@ -137,10 +142,10 @@
   "replaces":[
     {
       "old": "plugins/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js",
-      "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js"
+      "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js"
     },
     {
-      "old": "plugins/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js",
+      "old": "plugins/cronapp-lib-js/dist/js/tinymce/node_modules/tinymce/tinymce.min.js",
       "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js"
     },
     {
