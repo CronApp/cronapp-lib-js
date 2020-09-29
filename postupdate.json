@@ -150,7 +150,11 @@
       "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/angular-ui-tinymce/dist/tinymce.min.js"
     },
     {
+<<<<<<< HEAD
       "old": "plugins/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js",
+=======
+      "old": "plugins/cronapp-lib-js/dist/js/tinymce/node_modules/tinymce/tinymce.min.js",
+>>>>>>> e5dac219f77301911e4f3b52976ee8178484a0db
       "new": "node_modules/cronapp-lib-js/dist/js/tinymce/plugins/tinymce/tinymce.min.js"
     },
     {
