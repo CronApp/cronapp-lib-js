@@ -1,6 +1,6 @@
 {
   "name": "cronapp-lib-js",
-  "version": "2.7.5-SNAPSHOT.2",
+  "version": "2.7.5-SNAPSHOT.3",
   "description": "Javascript library for CronApp's projects",
   "main": "index.js",
   "scripts": {
